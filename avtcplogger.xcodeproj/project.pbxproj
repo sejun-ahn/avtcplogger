@@ -6,13 +6,31 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9B4578752CFCBB58009DC535 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9B4578742CFCBB4A009DC535 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
-		9BF5CF202CE5A058008791F6 /* avtcplogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = avtcplogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B4578742CFCBB4A009DC535 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9BF5CF202CE5A058008791F6 /* avtcplogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = avtcplogger.app; path = "/Users/mpilmini/Desktop/avtcplogger/build/Debug-iphoneos/avtcplogger.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		9BF5CF3B2CE5AEE7008791F6 /* Exceptions for "avtcplogger" folder in "avtcplogger" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 9BF5CF1F2CE5A058008791F6 /* avtcplogger */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		9BF5CF222CE5A058008791F6 /* avtcplogger */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				9BF5CF3B2CE5AEE7008791F6 /* Exceptions for "avtcplogger" folder in "avtcplogger" target */,
+			);
 			path = avtcplogger;
 			sourceTree = "<group>";
 		};
@@ -33,16 +51,8 @@
 			isa = PBXGroup;
 			children = (
 				9BF5CF222CE5A058008791F6 /* avtcplogger */,
-				9BF5CF212CE5A058008791F6 /* Products */,
+				9B4578742CFCBB4A009DC535 /* README.md */,
 			);
-			sourceTree = "<group>";
-		};
-		9BF5CF212CE5A058008791F6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9BF5CF202CE5A058008791F6 /* avtcplogger.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,7 +105,7 @@
 			mainGroup = 9BF5CF172CE5A058008791F6;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 9BF5CF212CE5A058008791F6 /* Products */;
+			productRefGroup = 9BF5CF172CE5A058008791F6;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -109,6 +119,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4578752CFCBB58009DC535 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,11 +266,13 @@
 				DEVELOPMENT_TEAM = 9VYX6T5D8V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = avtcplogger/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -284,11 +297,13 @@
 				DEVELOPMENT_TEAM = 9VYX6T5D8V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = avtcplogger/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
