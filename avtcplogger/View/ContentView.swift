@@ -35,14 +35,17 @@ struct ContentView: View {
             }
         }
         .onAppear() {
-            SocketManager.shared.addAction(for: "a", action: {
+            SocketManager.shared.addAction(for: "a", action: { time in
                 if !avManager.isCapturing {
                     avManager.startCapture()
+                    // Todo: add functions to save the time offset
+                    // avManager.startCapture(message)
                 }
             })
-            SocketManager.shared.addAction(for: "b", action: {
+            SocketManager.shared.addAction(for: "b", action: { message in
                 if avManager.isCapturing {
                     avManager.stopCapture()
+                    // avManager.stopCapture(message)
                 }
             })
         }

@@ -12,6 +12,13 @@ func getTimeString() -> String {
     return formatter.string(from: date)
 }
 
+func convertTimeString(date: String) -> String {
+    guard let dateDouble = Double(date) else { return " " }
+    let formatter = DateFormatter()
+    let date = Date(timeIntervalSince1970: dateDouble)
+    formatter.dateFormat = "HH:mm:ss.SSS"
+    return formatter.string(from: date)
+}
 
 struct SocketBoxView: View {
     @ObservedObject var socketManager: SocketManager

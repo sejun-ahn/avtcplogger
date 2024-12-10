@@ -12,7 +12,7 @@ class SocketManager: ObservableObject {
     private let portKey = "SocketPortKey"
     private var connection: NWConnection?
     private var receivedMessage: String = ""
-    private var actionCaseManager: [String: ()->Void] = [:]
+    private var actionCaseManager: [String: (String)->Void] = [:]
     @Published var messages: [String] = ["", "", ""]
     @Published var isConnected: Bool = false
     @Published var pingPong: Bool = false
@@ -105,17 +105,19 @@ class SocketManager: ObservableObject {
             if let data = data, !data.isEmpty {
                 DispatchQueue.main.async {
                     self.receivedMessage = String(data: data, encoding: .utf8) ?? ""
-                    print("[RX]\(getTimeString()) \(self.receivedMessage)")
-                    if self.receivedMessage != "pong" {
-                        self.updateMessages(with: "[RX]\(getTimeString()) \(self.receivedMessage)")
-                    } else {
-                        self.pingPong.toggle()
+                    if let parsedMessage = parseMessage(self.receivedMessage) {
+                        print(parsedMessage.flag, parsedMessage.message)
+                        if parsedMessage.flag == "pong" {
+                            self.updateMessages(with: "[RX]\(getTimeString()) pong \(convertTimeString(date: parsedMessage.message))")
+                            self.pingPong.toggle()
+                        }
+                        if let responseMessage = self.responseCaseManager?(parsedMessage.flag) {
+                            self.send(responseMessage)
+                        }
+                        self.callAction(for: self.receivedMessage)
                     }
-                    if let message = self.responseCaseManager?(self.receivedMessage) {
-                        self.send(message)
+                    
                         
-                    }
-                    self.callAction(for: self.receivedMessage)
                 }
             }
             if isComplete {
@@ -155,19 +157,26 @@ class SocketManager: ObservableObject {
         heartbeatTimer = nil
     }
     
-    private func sendHeartbeat() {
-        let ping = "ping"
-        send(ping)
+    func addAction(for flag: String, action: @escaping (String) -> Void) {
+        actionCaseManager[flag] = action
     }
     
-    func addAction(for message: String, action: @escaping () -> Void) {
-        actionCaseManager[message] = action
-    }
     func callAction(for message: String) {
-        if let action = actionCaseManager[message] {
-            action()
-        } else {
-            print("Action for message \(message) not found")
+        if let parsedMessage = parseMessage(message) {
+            if let action = actionCaseManager[parsedMessage.flag] {
+                action(parsedMessage.message)
+            }
+            else {
+                print("Action for flag \(parsedMessage.flag) not found")
+            }
         }
     }
+}
+
+func parseMessage(_ message: String) -> (flag: String, message: String)? {
+    let parts = message.components(separatedBy: ";")
+    guard parts.count == 2 else {
+        return nil
+    }
+    return (flag: parts[0], message: parts[1])
 }
