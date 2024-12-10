@@ -1,10 +1,7 @@
 //
-//  SocketManager.swift
-//  avtcplogger
+// Sejun Ahn
+// github: github.com/sejun-ahn
 //
-//  Created by mpilmini on 11/14/24.
-//
-
 
 import Foundation
 import Network

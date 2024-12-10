@@ -1,8 +1,6 @@
 //
-//  AVManager.swift
-//  avtcplogger
-//
-//  Created by mpilmini on 11/14/24.
+// Sejun Ahn
+// github: github.com/sejun-ahn
 //
 
 import Foundation

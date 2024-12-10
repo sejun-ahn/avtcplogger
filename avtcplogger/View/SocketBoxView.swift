@@ -1,16 +1,6 @@
 //
-//  SocketBoxView.swift
-//  avtcplogger
-//
-//  Created by mpilmini on 11/14/24.
-//
-
-
-//
-//  SwiftUIView.swift
-//  tcplogger
-//
-//  Created by mpilmini on 10/29/24.
+// Sejun Ahn
+// github: github.com/sejun-ahn
 //
 
 import SwiftUI
