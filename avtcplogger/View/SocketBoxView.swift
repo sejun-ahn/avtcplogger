@@ -20,6 +20,11 @@ func convertTimeString(date: String) -> String {
     return formatter.string(from: date)
 }
 
+func convertTimeDouble(date: String) -> Double {
+    guard let dateDouble = Double(date) else { return 0.0 }
+    return dateDouble
+}
+
 struct SocketBoxView: View {
     @ObservedObject var socketManager: SocketManager
     @State private var hostText: String = SocketManager.shared.host
@@ -67,17 +72,23 @@ struct SocketBoxView: View {
                     }
                 }
             }
+            HStack(spacing: 5){
+                Text("Latency")
+                    .smallStyle()
+                Text(String(format: "%.1f ms", socketManager.pingPongLatency*1000))
+                    .background(.white)
+                    .smallStyleVal()
+                Text("Offset")
+                    .smallStyle()
+                Text(String(format: "%.1f ms", socketManager.pingPongOffset*1000))
+                    .smallStyleVal()
+            }
+            
             
             HStack(spacing: 5) {
                 Text("Messages")
                     .mediumStyle()
-                Button(action: {
-                    print("Delay Check")
-                }, label: {
-                    Text("Delay Check")
-                })
-                .mediumStyle()
-                .buttonStyle(flag: socketManager.isConnected)
+                
             }
                 VStack(spacing: 5) {
                     ForEach(socketManager.messages, id: \.self) { message in
@@ -107,11 +118,9 @@ struct SocketBoxView: View {
                 .buttonStyle(flag: socketManager.isConnected)
             }
         }
-        //.padding(20)
-        .frame(width: 345, height: 260, alignment: .center)
+        .frame(width: 345, height: 295, alignment: .center)
         .background(Color.gray.opacity(0.2))
         .cornerRadius(6)
         .shadow(radius: 1)
-        //.padding()
     }
 }

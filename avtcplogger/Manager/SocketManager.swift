@@ -13,9 +13,17 @@ class SocketManager: ObservableObject {
     private var connection: NWConnection?
     private var receivedMessage: String = ""
     private var actionCaseManager: [String: (String)->Void] = [:]
+    private var txPing: Double = 0.0
+    private var txPong: Double = 0.0
+    private var rxPong: Double = 0.0
     @Published var messages: [String] = ["", "", ""]
     @Published var isConnected: Bool = false
     @Published var pingPong: Bool = false
+    @Published var pingPongOffset: Double = 0.0
+    @Published var pingPongLatency: Double = 0.0
+    
+    
+    
     var responseCaseManager: ((String) -> String)?
     
     private var heartbeatTimer: Timer?
@@ -109,6 +117,10 @@ class SocketManager: ObservableObject {
                         print(parsedMessage.flag, parsedMessage.message)
                         if parsedMessage.flag == "pong" {
                             self.updateMessages(with: "[RX]\(getTimeString()) pong \(convertTimeString(date: parsedMessage.message))")
+                            self.txPong = convertTimeDouble(date: parsedMessage.message)
+                            self.rxPong = Date().timeIntervalSince1970
+                            self.pingPongOffset = (self.rxPong + self.txPing)/2 - self.txPong
+                            self.pingPongLatency = (self.rxPong - self.txPing)/2
                             self.pingPong.toggle()
                         }
                         if let responseMessage = self.responseCaseManager?(parsedMessage.flag) {
@@ -148,6 +160,7 @@ class SocketManager: ObservableObject {
         DispatchQueue.main.async {
             self.heartbeatTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true, block: { _ in
                 self.send("ping")
+                self.txPing = Date().timeIntervalSince1970
             })
         }
     }

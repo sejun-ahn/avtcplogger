@@ -13,6 +13,13 @@ extension View {
             .cornerRadius(6)
     }
     
+    func smallStyleVal() -> some View {
+        return self
+            .frame(width: 80, height: 30, alignment: .center)
+            .background(.white)
+            .cornerRadius(6)
+    }
+    
     func mediumStyle() -> some View {
         return self
             .frame(width: 165, height: 30, alignment: .center)
