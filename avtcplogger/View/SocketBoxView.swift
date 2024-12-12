@@ -122,5 +122,14 @@ struct SocketBoxView: View {
         .background(Color.gray.opacity(0.2))
         .cornerRadius(6)
         .shadow(radius: 1)
+        .gesture(DragGesture().onChanged { _ in
+            UIApplication.shared.dismissKeyboard()}
+        )
+    }
+}
+
+extension UIApplication {
+    func dismissKeyboard() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
