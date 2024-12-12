@@ -10,3 +10,7 @@ And for the seperator(default: `;`), on [this line](https://github.com/sejun-ahn
 
 The resolution of the video is fixed with `.hd1920x1080`.\
 The exposure duration is also fixed with `setShutterSpeed()`.
+
+ToDo:\
+add function to create the `info.json` file\
+add `c` flag to add the specific timestamp line on `info.json`
